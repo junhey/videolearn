@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from video import views
 urlpatterns = [
+    path('',views.index,name='index'),
+    
+    path('video/<int:vid>/',views.videoDetail, name='videoDetail'),
+    path('history/', views.viewHistory, name="viewHistory"),
+    path('cate/<int:cateid>/',views.videoCate, name='videoCate'),
+    path('login/', views.logIn, name="login"),
+    path('register/', views.register, name="register"),
+
     path('admin/', admin.site.urls),
 ]
