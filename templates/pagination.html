@@ -1,0 +1,15 @@
+<div id="pagination">
+    <ul class="pager">
+    {% if cate_video_list.has_previous %}
+    <li><a href="?page={{ cate_video_list.previous_page_number }}">&laquo;上一页</a></li>
+    {% else %}
+    <li>&laquo;上一页</li>
+    {% endif %}
+     <li>{{ cate_video_list.number }}/{{ cate_video_list.paginator.num_pages }}</li>
+    {% if cate_video_list.has_next %}
+      <li><a href="?page={{ cate_video_list.next_page_number }}">下一页 &raquo;</a></li>
+    {% else %}
+      <li>下一页 &raquo;</li>
+    {% endif %}
+   </ul>
+</div>

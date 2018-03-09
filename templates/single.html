@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} {{video.name}} {% endblock %}
+{% block right-content %}
+<div class="show-top-grids">
+    <div class="col-sm-8 single-left">
+        <div class="song">
+            <div class="song-info">
+                <h3>{{ video.name }}</h3>	
+        </div>
+<div class="video-grid">
+    {% if video.passwd == None %}
+    <video width=600 src="/media/{{ video.link }}" controls preload></video>
+    {% else %}
+        {% if user.is_authenticated %}
+        <video width=600 src="/media/{{ video.link }}" controls preload></video>
+        {% else %}
+        <div class="signin"><h4><strong>对不起！本视频只能登录后观看学习，你可以</strong></h4></div>
+        <div class="signin"><a href="{% url 'register' %}" class="play-icon popup-with-zoom-anim">注册</a></div>
+        <div class="signin"><a href="{% url 'login' %}" class="play-icon popup-with-zoom-anim">登录</a></div>
+        {% endif %}
+    {% endif %}
+</div>
+            <div class="share">
+                <ul >
+                    <div class="col-md-4">
+                        <li style="float:left;"><a href="javascript:void(0);" class="icon like" id="like">{{ likes }}点赞</a></li>
+                    </div>
+                    <div class="col-md-4">
+                        <li style="float:left;"><a href="javascript:void(0);" class="icon comment-icon">评论</a></li>
+                    </div>
+                    <div class="col-md-4">
+                        <li class="view" style="float:left;">{{video.views}} 次观看</li>
+                    </div>
+                </ul>
+                <script>
+                    $.ajaxSetup({
+                        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                    });
+                    $("#like").click(function(){
+                        obj = {
+                            vid : {{video.id}}
+                        }
+                        $.post("{% url 'like' %}",obj,function(i){
+                            if(i.success){
+                                alert('点赞成功')
+                            }else{
+                                alert('点赞失败')
+                            }
+                        })
+                    })
+                </script>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="published row">
+            <div class="col-md-6">
+                <h4>发布于：{{video.create_date}}</h4>
+                <p>{{video.introduce}}</p>
+            </div>
+            <div class="col-md-6">
+                <h4>分类：</h4>
+                <a href="{% url 'videoCate' video.cate.id %}">{{ video.cate.name }}</a>
+            </div>
+        </div>
+        <!-- 评论 -->
+        <div class="all-comments">
+            <!--PC版-->
+<div id="SOHUCS" ></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cytrhFN25',
+conf: 'prod_4bf03f703ee9e1ace148cd7ceb00d1de'
+});
+</script>
+        </div>
+    </div>
+    
+    <!-- 相关推荐 -->
+    <div class="col-md-4 single-right">
+        <h3>教程专辑</h3>
+        <div class="single-grid-right">
+            <!-- 存在专辑 -->
+            {% if video_set %}
+            {% for item in video_set %}
+            <div class="single-right-grids">
+                <div class="col-md-4 single-right-grid-left">
+                    <a href="{% url 'videoDetail' item.video.id %}"><img src="/media/{{item.video.img}}" alt="" /></a>
+                </div>
+                <div class="col-md-8 single-right-grid-right">
+                    <a href="{% url 'videoDetail' item.video.id %}" class="title"> {{item.video}}</a>
+                    <p class="views">{{item.video.views}} views</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            {% endfor %}
+            <!-- 随机推荐 -->
+            {% else %}
+            {% for item in random_video %}
+            <div class="single-right-grids">
+                <div class="col-md-4 single-right-grid-left">
+                    <a href="{% url 'videoDetail' item.video.id %}"><img src="images/r1.jpg" alt="" /></a>
+                </div>
+                <div class="col-md-8 single-right-grid-right">
+                    <a href="{% url 'videoDetail' item.video.id %}" class="title"> {{item.name}}</a>
+                    <p class="views">{{item.views}} views</p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+{% endblock right-content %}

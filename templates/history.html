@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}观看历史{% endblock %}
+{% block right-content %}
+<div class="main-grids news-main-grids">
+    <div class="recommended-info">
+        <h3>{{user.username}}的学习历史</h3>
+        <p class="history-text">
+        </p>
+        {% if cate_video_list %}
+        {% for i in cate_video_list %}
+        <div class="history-grids">
+            <div class="col-md-1 history-left">
+                <p>{{i.view_date|date:"Y"}}</p>
+            </div>
+            <div class="col-md-11 history-right">
+                <h5>{{i.video.name}}</h5>
+                <p>{{i.view_date}} - {{i.video.introduce}}</p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% include 'pagination.html' %}
+    </div>
+</div>
+{% endblock %}
