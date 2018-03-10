@@ -20,6 +20,7 @@ from django.conf import settings
 from video import views
 from django.urls import path
 from django.urls import re_path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',views.index,name='index'),
     
@@ -36,3 +37,4 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT,}, name='static'),
     
 ]
+urlpatterns += staticfiles_urlpatterns()

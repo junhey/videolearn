@@ -162,7 +162,8 @@ def register(request):
                 user.backend = 'django.contrib.auth.backends.ModelBackend'
                 login(request,user)
                 # 重定向跳转
-                return redirect(request.session['login_from'],'/')
+                return redirect(request.session["login_from"],'/')
+                
             else:
                 errormsg = '用户名已存在！'
                 return render(request,'register.html',locals())

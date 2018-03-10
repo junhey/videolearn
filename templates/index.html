@@ -6,7 +6,7 @@
     <!-- 第一行栏目 -->
     <div class="top-grids">
         <div class="recommended-info">
-            <h3>最新教程</h3>
+            <h3>最新视频</h3>
         </div>
         {% if new_list %}
         {% for item in new_list %}
@@ -32,7 +32,7 @@
     <div class="recommended">
         <div class="recommended-grids">
             <div class="recommended-info">
-                <h3>最热教程</h3>
+                <h3>最热视频</h3>
             </div>
             {% if hot_list %}
             {% for item in hot_list %}
@@ -62,8 +62,32 @@
         </div>
     </div>
 
-    <!-- 第二行栏目 -->
+    <!-- 第一行栏目 -->
     <div class="recommended">
+        <div class="recommended-info">
+            <h3>推荐视频</h3>
+        </div>
+        {% if new_list %}
+        {% for item in new_list %}
+        <!-- 一个视频 -->
+        <div class="col-md-4 resent-grid recommended-grid slider-top-grids">
+            <div class="resent-grid-img recommended-grid-img">
+                <a href="{% url 'videoDetail' item.id %}"><img src="/media/{{item.img}}" alt="" /></a>
+                <div class="time">
+                    <p>{{item.hour|slice:"4:9"}}</p>
+                </div>
+            </div>
+            <div class="resent-grid-info recommended-grid-info">
+                <h3><a href="single.html" class="title title-info">{{item.name}}</a></h3>
+            </div>
+        </div>
+        <!-- 一个视频结束 -->
+        {% endfor %}
+        {% endif %}
+        <div class="clearfix"> </div>
+    </div>
+    <!-- 第二行栏目 -->
+    <!-- <div class="recommended">
         <div class="recommended-grids">
             <div class="recommended-info">
                 <h3>数据分析<span style="float:right;"><a href="{% url 'videoCate' 2 %}">更多>>></a></span></h3>
@@ -91,7 +115,7 @@
             </script>
             <div  id="top" class="callbacks_container">
                 <ul class="rslides" id="slider3">
-                    <!-- 第一页 -->
+                    
                     <li>
                         <div class="animated-grids">
                             {% if analysis_list_1 %}
@@ -121,8 +145,6 @@
                             <div class="clearfix"> </div>
                         </div>
                     </li>
-                    
-                    <!-- 第二页 -->
                     <li>
                         <div class="animated-grids">
                             {% if analysis_list_2 %}
@@ -152,8 +174,6 @@
                             <div class="clearfix"> </div>
                         </div>
                     </li>
-                    
-                    <!-- 第三页 -->
                     <li>
                         <div class="animated-grids">
                             {% if analysis_list_3 %}
@@ -186,10 +206,10 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- 第三行栏目 -->
-    <div class="recommended">
+    <!-- <div class="recommended">
         <div class="recommended-grids">
             <div class="recommended-info">
                 <h3>GUI开发<span style="float:right;"><a href="{% url 'videoCate' 3 %}">更多>>></a></span></h3>
@@ -220,10 +240,10 @@
             {% endif %}
             <div class="clearfix"> </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- 第四行栏目 -->
-    <div class="recommended">
+    <!-- <div class="recommended">
         <div class="recommended-grids">
             <div class="recommended-info">
                 <h3>Web开发<span style="float:right;"><a href="{% url 'videoCate' 5 %}">更多>>></a></span></h3>
@@ -254,6 +274,6 @@
             {% endif %}
             <div class="clearfix"> </div>
         </div>
-    </div>
+    </div> -->
 </div>
 {% endblock right-content %}        
