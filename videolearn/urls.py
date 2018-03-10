@@ -23,7 +23,7 @@ from django.urls import re_path
 urlpatterns = [
     path('',views.index,name='index'),
     
-    path('video/<int:vid>/',views.videoDetail, name='videoDetail'),
+    re_path(r'^video/(?P<vid>\d+)/$',views.videoDetail, name='videoDetail'),
     path('history/', views.viewHistory, name="viewHistory"),
     path('cate/<int:cateid>/',views.videoCate, name='videoCate'),
     path('login/', views.logIn, name="login"),

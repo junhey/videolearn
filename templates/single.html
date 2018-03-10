@@ -15,7 +15,7 @@
         {% if user.is_authenticated %}
         <video width=600 src="/media/{{ video.link }}" controls preload></video>
         {% else %}
-        <div class="signin"><h4><strong>对不起！本视频只能登录后观看学习，你可以</strong></h4></div>
+        <div class="signin"><h4><strong>对不起！本视频只能登录后观看，你可以</strong></h4></div>
         <div class="signin"><a href="{% url 'register' %}" class="play-icon popup-with-zoom-anim">注册</a></div>
         <div class="signin"><a href="{% url 'login' %}" class="play-icon popup-with-zoom-anim">登录</a></div>
         {% endif %}
@@ -65,21 +65,13 @@
         </div>
         <!-- 评论 -->
         <div class="all-comments">
-            <!--PC版-->
-<div id="SOHUCS" ></div>
-<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-window.changyan.api.config({
-appid: 'cytrhFN25',
-conf: 'prod_4bf03f703ee9e1ace148cd7ceb00d1de'
-});
-</script>
+            
         </div>
     </div>
     
     <!-- 相关推荐 -->
     <div class="col-md-4 single-right">
-        <h3>教程专辑</h3>
+        <h3>专辑</h3>
         <div class="single-grid-right">
             <!-- 存在专辑 -->
             {% if video_set %}

@@ -28,17 +28,17 @@ def index(request):
     hot_list = Video.objects.all().order_by('-views')[:4]
     # 返回Python基础的最新8条数据
     python_list = Video.objects.filter(cate=Cate.objects.get(name='Python基础')).order_by('-create_time')[:8]
-    # 返回数据分析的最新4条数据
-    analysis_list_1 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[:4]
-    # 返回数据分析的最新4条数据
-    analysis_list_2 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[4:8]
-    # 返回数据分析的最新4条数据
-    analysis_list_3 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[8:12]
-    # 返回GUI开发的最新4条数据
-    gui_list = Video.objects.filter(cate=Cate.objects.get(name='GUI编程')).order_by('-create_time')[:4]
-    # 返回Web开发的最新4条数据
-    web_list = Video.objects.filter(cate=Cate.objects.get(name='Web开发')).order_by('-create_time')[:4]
-    # return HttpResponse(locals())
+    # # 返回数据分析的最新4条数据
+    # analysis_list_1 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[:4]
+    # # 返回数据分析的最新4条数据
+    # analysis_list_2 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[4:8]
+    # # 返回数据分析的最新4条数据
+    # analysis_list_3 = Video.objects.filter(cate=Cate.objects.get(name='数据分析')).order_by('-create_time')[8:12]
+    # # 返回GUI开发的最新4条数据
+    # gui_list = Video.objects.filter(cate=Cate.objects.get(name='GUI编程')).order_by('-create_time')[:4]
+    # # 返回Web开发的最新4条数据
+    # web_list = Video.objects.filter(cate=Cate.objects.get(name='Web开发')).order_by('-create_time')[:4]
+    # # return HttpResponse(locals())
     return render(request,'index.html',locals())
 
 # 视频详情页

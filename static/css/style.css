@@ -1739,6 +1739,7 @@ span.glyphicon.glyphicon-user {
 	position:relative;
 }
 .side-bottom{
+	width: 100%;
     text-align: center;
     position: absolute;
     left: 0;

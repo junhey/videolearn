@@ -17,7 +17,7 @@ BASE_DIR = os.path.join(BASE_DIR,'media')
 def get_duration(filename):
     s = subprocess.Popen('ffmpeg -i "{0}"'.format(filename),shell=True,stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
     ss = s.stdout.read()
-    print( 'ss:%s 111' %ss)
+    print( 'ss:%s :ss' %ss)
     duration = re.findall(r'Duration:(.*?),',str(ss))[0]
     print(filename,duration)
     return (filename,duration)
