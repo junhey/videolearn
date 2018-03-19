@@ -19,13 +19,13 @@ def get_img_path(instance, filename):
     return 'video_img/{0}/{1}'.format(instance.name,filename)
 
 class Video(models.Model):
-    name = models.CharField(verbose_name='视频名称',max_length=20)
-    link = models.FileField(verbose_name='视频链接',upload_to=get_video_path)
-    img = models.ImageField(verbose_name='视频图片',upload_to=get_img_path)
+    name = models.CharField(verbose_name='电影名称',max_length=20)
+    link = models.FileField(verbose_name='电影链接',upload_to=get_video_path)
+    img = models.ImageField(verbose_name='电影图片',upload_to=get_img_path)
     passwd = models.CharField(verbose_name='播放密码',max_length=10,null=True,blank=True)
-    introduce = models.TextField(verbose_name="视频介绍")
-    cate = models.ForeignKey(Cate,verbose_name='视频分类',on_delete=models.CASCADE)
-    hour = models.CharField(verbose_name="视频时长",max_length=10)
+    introduce = models.TextField(verbose_name="电影介绍")
+    cate = models.ForeignKey(Cate,verbose_name='电影分类',on_delete=models.CASCADE)
+    hour = models.CharField(verbose_name="电影时长",max_length=10)
     views = models.IntegerField(verbose_name='观看次数',default=0)
     create_time = models.DateTimeField(verbose_name='创建时间',auto_now_add=True)
     create_date = models.DateField(verbose_name='创建日期',auto_now_add=True)
@@ -35,12 +35,12 @@ class Video(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = '视频'
+        verbose_name = '电影'
         verbose_name_plural = verbose_name
 
 
 class Label(models.Model):
-    video = models.ForeignKey(Video,verbose_name="视频",on_delete=models.CASCADE)
+    video = models.ForeignKey(Video,verbose_name="电影",on_delete=models.CASCADE)
     label = models.CharField(verbose_name="标签名",max_length=10)
 
     def __str__(self):
@@ -52,7 +52,7 @@ class Label(models.Model):
 
 class Set(models.Model):
     name = models.CharField(verbose_name="专辑名称",max_length=20)
-    video = models.ForeignKey(Video,verbose_name='视频名称',on_delete=models.CASCADE)
+    video = models.ForeignKey(Video,verbose_name='电影名称',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -62,7 +62,7 @@ class Set(models.Model):
         verbose_name_plural = verbose_name
 
 class Likes(models.Model):
-    video = models.ForeignKey(Video,verbose_name='视频',on_delete=models.CASCADE)
+    video = models.ForeignKey(Video,verbose_name='电影',on_delete=models.CASCADE)
     user = models.ForeignKey(User,verbose_name='用户',on_delete=models.CASCADE)
     time = models.DateTimeField(verbose_name='时间',auto_now_add=True)
 
