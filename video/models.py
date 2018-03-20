@@ -22,7 +22,7 @@ class Video(models.Model):
     name = models.CharField(verbose_name='电影名称',max_length=20)
     link = models.FileField(verbose_name='电影链接',upload_to=get_video_path)
     img = models.ImageField(verbose_name='电影图片',upload_to=get_img_path)
-    passwd = models.CharField(verbose_name='播放密码',max_length=10,null=True,blank=True)
+    # passwd = models.CharField(verbose_name='播放密码',max_length=10,null=True,blank=True)
     introduce = models.TextField(verbose_name="电影介绍")
     cate = models.ForeignKey(Cate,verbose_name='电影分类',on_delete=models.CASCADE)
     hour = models.CharField(verbose_name="电影时长",max_length=10)

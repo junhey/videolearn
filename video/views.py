@@ -20,7 +20,7 @@ def getPage(request, video_list):
 
 # 首页
 def index(request):
-    # 获取视频分类作为菜单数据
+    # 获取电影分类作为菜单数据
     menu_list = Cate.objects.all()
     # 返回最新的3条数据
     new_list = Video.objects.all().order_by('-create_time')[:3]
@@ -41,14 +41,14 @@ def index(request):
     # # return HttpResponse(locals())
     return render(request,'index.html',locals())
 
-# 视频详情页
+# 电影详情页
 def videoDetail(request,vid):
-    # 获取视频分类作为菜单数据
+    # 获取电影分类作为菜单数据
     menu_list = Cate.objects.all()
-    # 获取视频数据
+    # 获取电影数据
     id = int(vid)
     video = Video.objects.get(id=vid)
-    # 获取视频专辑
+    # 获取电影专辑
     try:
         set_name = Set.objects.get(video=id).name
         video_set = Set.objects.filter(name = set_name)
@@ -78,7 +78,7 @@ def videoDetail(request,vid):
 # 观看历史页
 @login_required()
 def viewHistory(request):
-    # 获取视频分类作为菜单数据
+    # 获取电影分类作为菜单数据
     menu_list = Cate.objects.all()
     # 获取用户
     user = User.objects.get(username=request.user.username)
@@ -89,11 +89,11 @@ def viewHistory(request):
     return render(request,'history.html',locals())
     # return HttpResponse("这是观看历史页")
 
-# 视频分类页
+# 电影分类页
 def videoCate(request,cateid):
-    # 获取视频分类作为菜单数据
+    # 获取电影分类作为菜单数据
     menu_list = Cate.objects.all()
-    # 获取分类视频
+    # 获取分类电影
     catename = Cate.objects.get(id=cateid)
     video_list = Video.objects.filter(cate = catename)
     # 分页
@@ -179,7 +179,7 @@ def logOut(request):
         print(e)
     return redirect(request.META['HTTP_REFERER'])
 
-# 视频点赞功能
+# 电影点赞功能
 @login_required
 def like(request):
     if request.method == 'POST':
